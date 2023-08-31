@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Software for managing and analysing patients' inflammation data in our imaginary hospital."""
+"""Software managing and analysing patients' inflammation data in our imaginary hospital."""
 
 import argparse
 
