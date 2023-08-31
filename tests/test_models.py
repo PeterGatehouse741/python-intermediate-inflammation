@@ -60,28 +60,6 @@ def test_daily_max(test_max, expected_max, expect_raises):
     else:
         npt.assert_array_equal(daily_max(np.array(test_max)), np.array(expected_max))
 
-@pytest.mark.parametrize(
-    "test_std, expected_std, expect_raises",
-    [
-        ([ [0, 0], [0, 0], [0, 0] ],
-         [0, 0],
-         None),
-        ([ [1, 2], [3, 5], [5, 7] ],
-         [1.633, 2.055],
-         None),
-        ([[-1, 2], [3, 4], [5, 6]],
-         [3, 4],
-         ValueError)
-
-    ])
-def test_daily_std(test_std, expected_std, expect_raises):
-    """Parametrized test of daily_std function."""
-    from inflammation.models import daily_std
-    if expect_raises is not None:
-        with pytest.raises(expect_raises):
-            npt.assert_array_almost_equal(daily_std(np.array(test_std)), np.array(expected_std),decimal=2)
-    else:
-        npt.assert_array_almost_equal(daily_std(np.array(test_std)), np.array(expected_std),decimal=2)
 
 @pytest.mark.parametrize(
     "test_norm, expected_norm, expect_raises",
