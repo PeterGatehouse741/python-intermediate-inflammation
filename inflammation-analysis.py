@@ -30,4 +30,3 @@ if __name__ == "__main__":
         help='Input CSV(s) containing inflammation series for each patient')
     args = parser.parse_args()
     main(args)
-git 
