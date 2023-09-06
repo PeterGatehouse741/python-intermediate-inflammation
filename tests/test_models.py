@@ -116,3 +116,26 @@ def test_patient_normalise(test_norm, expected_norm, expect_raises):
             npt.assert_array_almost_equal(patient_normalise(np.array(test_norm)), np.array(expected_norm),decimal=2)
     else:
         npt.assert_array_almost_equal(patient_normalise(np.array(test_norm)), np.array(expected_norm),decimal=2)
+
+
+@pytest.mark.parametrize(
+    "data_test, patient_test, threshold_test, expected_count",
+    [
+        ( [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+          1,
+          5,
+          0),
+        ([[0, 0, 0], [5, 6, 7], [0, 0, 0]],
+         1,
+         5,
+         2),
+        ([[4, 5, 4], [0, 0, 0], [0, 0, 0]],
+         0,
+         4,
+         1)
+    ])
+
+
+def test_daily_above_threshold(data_test, patient_test, threshold_test, expected_count):
+    from inflammation.models import daily_above_threshold
+    npt.assert_array_equal(daily_above_threshold(np.array(data_test),patient_test,threshold_test), np.array(expected_count))

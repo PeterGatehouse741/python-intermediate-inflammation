@@ -8,6 +8,7 @@ and each column represents a single day across all patients.
 """
 
 import numpy as np
+from functools import reduce
 
 def load_csv(filename):
     """Load a Numpy array from a CSV
@@ -107,3 +108,14 @@ def patient_normalise(data):
     normalised[np.isnan(normalised)] = 0
     normalised[normalised < 0] = 0
     return normalised
+
+def daily_above_threshold(data, patient, threshold):
+    """
+        Return boolean list, true if
+        daily inflammation data of patient exceeds threshold
+    """
+    pdata=data[patient]
+
+    blist = list(map(lambda x: x > threshold, pdata))
+    bcount= reduce(lambda a,b:a+1 if b else a, blist,0)
+    return bcount
